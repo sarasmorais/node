@@ -1,0 +1,15 @@
+{
+  "name": "template",
+  "type":"module",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "POST":"http POST localhost:3000/usersnp",
+    "GET":"http GET localhost:3000/usersnp"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
