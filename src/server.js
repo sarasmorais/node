@@ -1,6 +1,7 @@
 import http from 'node:http'
 
 const users = []
+const produtos = []
 
 const server = http.createServer((req,res) => {
     const{method,url} = req
@@ -24,11 +25,29 @@ const server = http.createServer((req,res) => {
 
     }
 
+
+    if(method === 'GET' && url === '/produtos'){
+        return res
+
+        .setHeader('content-type','aplication/json')
+        .end(JSON.stringify(users))
+
+    } 
+
+    if (method === 'POST' && url === '/produtos'){
+        users.push({
+            id:1,
+            name:'Celular',
+
+        })
+
+        return res.end('Criação de usuário')
+
+    }
+
     return res.end('Página Inicial!')
 
-
-}) //criação de um servidor com o requerimento e uma resposta
-
+}) 
 server.listen(3000)
 
 
