@@ -1,47 +1,43 @@
 import http from 'node:http'
 
 const users = []
-const produtos = []
 
 const server = http.createServer((req,res) => {
+
     const{method,url} = req
 
     if(method === 'GET' && url === '/users'){
-        return res
-
-        .setHeader('content-type','aplication/json')
-        .end(JSON.stringify(users))
-
+        if(users.length === 0){
+            return res.end('Nenhum usuário encontrado.');
+        }
+        return res.end(JSON.stringify(users));
     } 
 
     if (method === 'POST' && url === '/users'){
         users.push({
             id:1,
-            name:'Luan Olivera',
-            email:'LuanPDD@hotmail.com'
-        })
+            name:'Sara Morais'
+        });
 
-        return res.end('Criação de usuário')
-
+        return res.end('Usuário criado com sucesso');
     }
 
 
     if(method === 'GET' && url === '/produtos'){
-        return res
-
-        .setHeader('content-type','aplication/json')
-        .end(JSON.stringify(users))
-
+        if(users.length === 0){
+            return res.end ('Nenhum produto encontrado');
+        }else{
+            return res.end(JSON.stringify(users));
+        }
     } 
 
-    if (method === 'POST' && url === '/produtos'){
-        users.push({
-            id:1,
-            name:'Celular',
-
-        })
-
-        return res.end('Criação de usuário')
+    if (method === 'PACH' && url === '/produtos'){
+        if(users.length !==0){
+            users[0].produto = 'Produto 01';
+            return res.end('Atualização de usuário efetuada.');
+        } else {
+            return res.end('Nenhum produto encontrado');
+        }
 
     }
 
